@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="shopular">
+  <head>
+    <meta charset="utf-8">
+    <title>Shopular</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7' crossorigin='anonymous'>
+  </head>
+
+  <body>
+    <div class="inventory" ng-controller="InventoryController as inventory">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <td>Item Name</td>
+          <td>Price</td>
+          <td>Quantity</td>
+          <td>Color</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in inventory.inventory">
+          <td>{{item.name}}</td>
+          <td>{{(item.price + (item.price * inventory.tax) - item.discount) | number: 2 | currency}}
+            <img ng-show="item.discount > 0" src="https://tiy-learn-content.s3.amazonaws.com/98350f05-sale_2.png" alt="sale icon" /></td>
+          <td>{{item.quantity}}</td>
+          <td>{{item.color}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="btn btn-primary btn-sm" type="button">Toggle US/UK</button>
+
+  </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
