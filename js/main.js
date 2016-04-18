@@ -25,9 +25,7 @@
   function InventoryController() {
     this.inventory = items;
     this.tax = salesTax;
-    this.regionToggle = function regionToggle() {
-
-    };
+    this.country = england;
   }
 
 })();
