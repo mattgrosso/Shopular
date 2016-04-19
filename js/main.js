@@ -18,6 +18,8 @@
     { "id": 683, "name": "pillow", "price": 27, "quantity": 10, "color": "black", "discount": 12 }
   ];
 
+  window.items = items;
+
   angular
     .module('shopular', [])
     .controller('InventoryController', InventoryController);
@@ -35,7 +37,7 @@
     };
 
     this.save = function saveNewItem(form) {
-      if(form.$valid){
+      if (form.$valid) {
         this.inventory.push(this.newItem);
         this.newItem = {
           name: "",
@@ -44,7 +46,24 @@
           color: "",
           discount: ""
         };
+        form.$setPristine();
+        form.$setUntouched();
+      } else {
+        // form.$setDirty();
+        console.log('invalid entry');
       }
+    };
+
+    this.decrement = function decrementQuantity(item) {
+      if (item.quantity > 0){
+        item.quantity = item.quantity - 1;
+      } else {
+        item.quantity = 0;
+      }
+    };
+
+    this.increment = function incrementQuantity(item) {
+      item.quantity = item.quantity + 1;
     };
 
   }

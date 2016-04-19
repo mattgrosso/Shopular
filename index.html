@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Shopular</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7' crossorigin='anonymous'>
+    <link rel="stylesheet" href="/css/master.css" charset="utf-8">
   </head>
 
   <body>
@@ -20,23 +21,27 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="item in inventory.inventory">
+        <tr ng-repeat="item in inventory.inventory | orderBy: 'quantity'">
           <td>{{item.name}}</td>
-          <td>{{(item.price + (item.price * inventory.tax) - item.discount) | number: 2 | currency}}
+          <td>{{((item.price - item.discount) + ((item.price - item.discount) * inventory.tax)) | currency}}
             <img ng-show="item.discount > 0" src="https://tiy-learn-content.s3.amazonaws.com/98350f05-sale_2.png" alt="sale icon" /></td>
-          <td>{{item.quantity}}</td>
+          <td>
+            <input class="btn btn-secondary btn-xs increment-buttons" type="button" value="-" ng-click="inventory.decrement(item)">
+            {{item.quantity}}
+            <input class="btn btn-secondary btn-xs increment-buttons" type="button" value="+" ng-click="inventory.increment(item)">
+          </td>
           <td>{{item.color}}</td>
         </tr>
       </tbody>
     </table>
 
-    <form name="createItemForm" ng-submit="inventory.save(createItemForm)">
-      <input ng-model="inventory.newItem.name" type="text" placeholder="Item name">
-      <input ng-model="inventory.newItem.price" type="text" placeholder="Price">
-      <input ng-model="inventory.newItem.quantity" type="text" placeholder="Quantity">
-      <input ng-model="inventory.newItem.color" type="text" placeholder="Color">
-      <input ng-model="inventory.newItem.discount" type="text" placeholder="Discount (in dollars)">
-      <input type="button" value="Add Item">
+    <form novalidate name="createItemForm" ng-submit="inventory.save(createItemForm)">
+      <input ng-model="inventory.newItem.name" type="text" placeholder="Item name" required>
+      <input ng-model="inventory.newItem.price" type="number" placeholder="Price" required min="0">
+      <input ng-model="inventory.newItem.quantity" type="number" placeholder="Quantity" required min="0">
+      <input ng-model="inventory.newItem.color" type="text" placeholder="Color" required>
+      <input ng-model="inventory.newItem.discount" type="number" placeholder="Discount (in dollars)" required min="0">
+      <button class="btn">Add Item</button>
     </form>
   </main>
 
