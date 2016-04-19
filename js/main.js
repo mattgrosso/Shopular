@@ -25,7 +25,28 @@
   function InventoryController() {
     this.inventory = items;
     this.tax = salesTax;
-    this.country = england;
+
+    this.newItem = {
+      name: "",
+      price: "",
+      quantity: "",
+      color: "",
+      discount: ""
+    };
+
+    this.save = function saveNewItem(form) {
+      if(form.$valid){
+        this.inventory.push(this.newItem);
+        this.newItem = {
+          name: "",
+          price: "",
+          quantity: "",
+          color: "",
+          discount: ""
+        };
+      }
+    };
+
   }
 
 })();

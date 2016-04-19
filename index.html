@@ -7,7 +7,8 @@
   </head>
 
   <body>
-    <div class="inventory" ng-controller="InventoryController as inventory">
+
+    <main class="inventory" ng-controller="InventoryController as inventory">
 
     <table class="table">
       <thead>
@@ -29,9 +30,18 @@
       </tbody>
     </table>
 
-  </div>
+    <form name="createItemForm" ng-submit="inventory.save(createItemForm)">
+      <input ng-model="inventory.newItem.name" type="text" placeholder="Item name">
+      <input ng-model="inventory.newItem.price" type="text" placeholder="Price">
+      <input ng-model="inventory.newItem.quantity" type="text" placeholder="Quantity">
+      <input ng-model="inventory.newItem.color" type="text" placeholder="Color">
+      <input ng-model="inventory.newItem.discount" type="text" placeholder="Discount (in dollars)">
+      <input type="button" value="Add Item">
+    </form>
+  </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
     <script src="js/main.js"></script>
+
   </body>
 </html>
