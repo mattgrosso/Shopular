@@ -1,0 +1,13 @@
+input.ng-invalid.ng-touched, .ng-submitted input.ng-invalid{
+  border: 1px solid red;
+}
+
+.increment-buttons{
+  border-radius: 5px;
+  height: 18px;
+  width: 18px;
+  padding: 0;
+  padding-bottom: 1px;
+  border: solid black 1px;
+  background-color: #D8D6D8;
+}
