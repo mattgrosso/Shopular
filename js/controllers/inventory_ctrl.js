@@ -3,15 +3,14 @@
 
   var salesTax = 0.0575;
 
-  window.items = items;
-
   angular
-    .module('shopular', [])
+    .module('shopular')
     .controller('InventoryController', InventoryController);
 
-  function InventoryController() {
-    this.inventory = items;
-    // TODO: You need to fix the ref to items here. It's in the factory now
+  InventoryController.$inject = ['inventoryFactory'];
+
+  function InventoryController(inventoryFactoryObject) {
+    this.inventory = inventoryFactoryObject.itemsForSale;
     this.tax = salesTax;
 
     this.newItem = {
@@ -24,6 +23,7 @@
 
     this.save = function saveNewItem(form) {
       if (form.$valid) {
+        console.log(this);
         this.inventory.push(this.newItem);
         this.newItem = {
           name: "",
@@ -32,6 +32,12 @@
           color: "",
           discount: ""
         };
+        // TODO: What I need to do here is figure out how to use the add to storage fn
+        // What does it take in? It takes in the full item list which is called
+        // this.inventory right now.
+        // Ok, how do I call that fn? It came along with the inventoryFactoryObject
+        // Do I still have access to that? Yes.
+        inventoryFactoryObject.save(this.inventory);
         form.$setPristine();
         form.$setUntouched();
       } else {

@@ -25,22 +25,34 @@
 
 /**
  * This is here to check if the data has been stored already. It should only
- * be activated on the very first load of the page anad after the user clears
+ * be activated on the very first load of the page and after the user clears
  * their cache.
  */
   if(!localStorage.storedInventory){
-    localStorage.setItem(localStorageKey, angular.toJSON(items));
+    localStorage.setItem(localStorageKey, JSON.stringify(items));
   }
 
+
+/**
+ * When called, this fn returns an object with two attributes; the data from
+ * localStorage and a function for updating the localStorage.
+ */
   function inventoryFactory() {
     return {
-      inventory: JSON.parse(localStorage.getItem(localStorageKey)),
+      itemsForSale: JSON.parse(localStorage.getItem(localStorageKey)),
       save: addToLocalStorage,
     };
   }
 
+/**
+ * This fn is meant to update the localStorage to include any newly added
+ * objects.
+ */
   function addToLocalStorage(itemList) {
-    localStorage.setItem(localStorageKey, angular.toJSON(itemList));
+    console.log(localStorage[localStorageKey].length);
+    localStorage.setItem(localStorageKey, angular.toJson(itemList));
+    console.log(localStorage[localStorageKey].length);
+
   }
 
 
