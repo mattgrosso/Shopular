@@ -9,6 +9,10 @@
 
   <body>
 
+    <header class="page-header" ng-controller="HeaderController as header">
+      <h1>{{header.username}}<small>{{header.loginTime | date: 'MMM-dd - h:mm a'}}</small></h1>
+    </header>
+
     <main class="inventory" ng-controller="InventoryController as inventory">
 
     <table class="table">
@@ -48,6 +52,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/controllers/inventory_ctrl.js"></script>
+    <script src="js/controllers/header_ctrl.js"></script>
     <script src="js/factories/inventory_fact.js"></script>
 
   </body>

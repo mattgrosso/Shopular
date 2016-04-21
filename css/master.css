@@ -2,6 +2,10 @@ input.ng-invalid.ng-touched, .ng-submitted input.ng-invalid{
   border: 1px solid red;
 }
 
+h1, h1 small{
+  margin-left: 50px;
+}
+
 .increment-buttons{
   border-radius: 5px;
   height: 18px;
