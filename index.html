@@ -10,7 +10,16 @@
   <body>
 
     <header class="page-header" ng-controller="HeaderController as header">
-      <h1>{{header.username}}<small>{{header.loginTime | date: 'MMM-dd - h:mm a'}}</small></h1>
+      <form name="loginForm" ng-submit="header.login(loginForm)" ng-hide="header.loggedIn">
+        <input ng-model="header.username" type="text" placeholder="Enter username">
+        <button class="btn">Login</button>
+      </form>
+      <h1 ng-show="header.loggedIn">{{header.username}}
+        <small>{{header.loginTime | date: 'MMM-dd - h:mm a'}}</small>
+        <form class="logout-button" ng-submit="header.logout()">
+          <button class="btn">Logout</button>
+        </form>
+      </h1>
     </header>
 
     <main class="inventory" ng-controller="InventoryController as inventory">

@@ -6,6 +6,11 @@ h1, h1 small{
   margin-left: 50px;
 }
 
+.logout-button{
+  float: right;
+  margin-right: 30px;
+}
+
 .increment-buttons{
   border-radius: 5px;
   height: 18px;
