@@ -23,7 +23,6 @@
     this.loggedIn = loggedIn;
 
     this.login = function login(form) {
-      // TODO: How can I check the value of this input?
       this.loggedIn = true;
       localStorage.setItem('username', JSON.stringify(this.username));
     };

@@ -40,7 +40,7 @@
   function inventoryFactory() {
     return {
       itemsForSale: JSON.parse(localStorage.getItem(localStorageKey)),
-      save: addToLocalStorage,
+      save: addToLocalStorage
     };
   }
 
@@ -49,10 +49,7 @@
  * objects.
  */
   function addToLocalStorage(itemList) {
-    console.log(localStorage[localStorageKey].length);
     localStorage.setItem(localStorageKey, angular.toJson(itemList));
-    console.log(localStorage[localStorageKey].length);
-
   }
 
 
